@@ -8,7 +8,6 @@ import Spinner from "../../../utils/Spinner";
 import { addAdmin } from "../../../redux/actions/adminActions";
 import { ADD_ADMIN, SET_ERRORS } from "../../../redux/actionTypes";
 import * as classes from "../../../utils/styles";
-import { toast, ToastContainer } from "react-toastify";
 import Select from '@mui/material/Select';
 
 const Body = () => {
@@ -27,20 +26,10 @@ const Body = () => {
       .then((res) => {
         setLoading(false);
         setResponse(res);
-        toast.success("Admin created successfully!", {
-          position: "top-right",
-          autoClose: 3000, // Closes after 3 seconds
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
         reset();
       })
       .catch(() => setLoading(false));
   };
-
   useEffect(() => {
     if (store.errors && Object.keys(store.errors).length > 0) {
       setLoading(false);

@@ -30,7 +30,7 @@ const Body = () => {
         </div>
 
         {/* Card Section - Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mr-5">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mr-5">
           <div className="bg-white h-[8rem] rounded-xl shadow-lg flex items-center space-x-4 px-8">
             <EngineeringIcon className="rounded-full py-2 bg-orange-300" sx={{ fontSize: 40 }} />
             <div className="flex flex-col">

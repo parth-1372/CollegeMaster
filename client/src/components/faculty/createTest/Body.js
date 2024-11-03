@@ -190,7 +190,7 @@ const Body = () => {
                 </div>
               </div>
             </div>
-            <div className={classes.adminFormButton}>
+            <div className={`${classes.adminFormButton} flex justify-center space-x-4`}>
               <button className={classes.adminFormSubmitButton} type="submit">
                 Submit
               </button>

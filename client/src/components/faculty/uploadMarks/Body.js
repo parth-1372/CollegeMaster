@@ -3,7 +3,6 @@ import BoyIcon from "@mui/icons-material/Boy";
 import { useDispatch, useSelector } from "react-redux";
 import { getStudent, uploadMark } from "../../../redux/actions/facultyActions";
 import { MenuItem, Select } from "@mui/material";
-import Spinner from "../../../utils/Spinner";
 import * as classes from "../../../utils/styles";
 import { MARKS_UPLOADED, SET_ERRORS } from "../../../redux/actionTypes";
 import { getTest } from "../../../redux/actions/facultyActions";
@@ -17,7 +16,6 @@ const Body = () => {
   const store = useSelector((state) => state);
   const tests = store.faculty.tests.result;
   const [marks, setMarks] = useState([]);
-
   const [value, setValue] = useState({
     department: "",
     year: "",
@@ -54,11 +52,9 @@ const Body = () => {
   };
   const students = useSelector((state) => state.admin.students.result);
 
-  const uploadMarks = (e) => {
+  const uploadMarks = () => {
     setError({});
-    dispatch(
-      uploadMark(marks, value.department, value.section, value.year, value.test)
-    );
+    dispatch(uploadMark(marks, value.department, value.section, value.year, value.test));
   };
 
   useEffect(() => {
@@ -91,8 +87,8 @@ const Body = () => {
   }, [value.year, value.section]);
 
   return (
-    <div className="flex flex-col flex-[0.8] mt-3 px-4">
-      <div className="space-y-5">
+    <div className="flex flex-col flex-[0.8] mt-3 px-4 bg-[#f4f6fa] rounded-2xl shadow-2xl h-full overflow-y-auto">
+      <div className="space-y-5 p-6">
         <div className="flex text-gray-400 items-center space-x-2">
           <BoyIcon />
           <h1 className="text-lg font-semibold">All Students</h1>
@@ -128,7 +124,7 @@ const Body = () => {
               <MenuItem value="3">3</MenuItem>
             </Select>
 
-            <label htmlFor="year" className="text-sm font-medium">Test</label>
+            <label htmlFor="test" className="text-sm font-medium">Test</label>
             <Select
               required
               displayEmpty
@@ -137,7 +133,7 @@ const Body = () => {
               value={value.test}
               onChange={(e) => setValue({ ...value, test: e.target.value })}>
               <MenuItem value="">None</MenuItem>
-              {tests && tests?.map((test, idx) => (
+              {tests?.map((test, idx) => (
                 <MenuItem value={test.test} key={idx}>
                   {test.test}
                 </MenuItem>
@@ -151,29 +147,50 @@ const Body = () => {
 
         {search && !loading && students?.length !== 0 && (
           <div className="bg-white rounded-xl p-4 mt-5 shadow-md space-y-5">
-            <div className="overflow-auto">
-              <div className="grid grid-cols-8 gap-2">
-                <h1 className="col-span-1 font-semibold">Sr no.</h1>
-                <h1 className="col-span-2 font-semibold">Name</h1>
-                <h1 className="col-span-2 font-semibold">Username</h1>
-                <h1 className="col-span-1 font-semibold">Section</h1>
-                <h1 className="col-span-2 font-semibold">Marks</h1>
-              </div>
-              {students && students?.map((stu, idx) => (
-                <div key={idx} className="grid grid-cols-8 gap-2 py-2">
-                  <h1 className="col-span-1">{idx + 1}</h1>
-                  <h1 className="col-span-2">{stu.name}</h1>
-                  <h1 className="col-span-2">{stu.username}</h1>
-                  <h1 className="col-span-1">{stu.section}</h1>
+            {/* Desktop view */}
+            <div className="hidden md:grid grid-cols-8 gap-2">
+              <h1 className="col-span-1 font-semibold">Sr no.</h1>
+              <h1 className="col-span-2 font-semibold">Name</h1>
+              <h1 className="col-span-2 font-semibold">Username</h1>
+              <h1 className="col-span-1 font-semibold">Section</h1>
+              <h1 className="col-span-2 font-semibold">Marks</h1>
+            </div>
+
+            {/* Mobile view */}
+            <div className="block md:hidden">
+              {students.map((stu, idx) => (
+                <div key={idx} className="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+                  <div><strong>Sr No:</strong> {idx + 1}</div>
+                  <div><strong>Name:</strong> {stu.name}</div>
+                  <div><strong>Username:</strong> {stu.username}</div>
+                  <div><strong>Section:</strong> {stu.section}</div>
                   <input
                     onChange={(e) => handleInputChange(e.target.value, stu._id)}
                     value={stu.marks}
-                    className="col-span-2 border rounded px-2"
+                    className="border rounded px-2 mt-2 w-full"
                     type="text"
+                    placeholder="Enter marks"
                   />
                 </div>
               ))}
             </div>
+
+            {/* Desktop table rows */}
+            {students.map((stu, idx) => (
+              <div key={idx} className="hidden md:grid grid-cols-8 gap-2 py-2">
+                <h1 className="col-span-1">{idx + 1}</h1>
+                <h1 className="col-span-2">{stu.name}</h1>
+                <h1 className="col-span-2">{stu.username}</h1>
+                <h1 className="col-span-1">{stu.section}</h1>
+                <input
+                  onChange={(e) => handleInputChange(e.target.value, stu._id)}
+                  value={stu.marks}
+                  className="col-span-2 border rounded px-2"
+                  type="text"
+                  placeholder="Enter marks"
+                />
+              </div>
+            ))}
 
             <button
               onClick={uploadMarks}
