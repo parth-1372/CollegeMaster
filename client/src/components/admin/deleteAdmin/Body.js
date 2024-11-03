@@ -48,6 +48,7 @@ const Body = () => {
   const dltAdmin = () => {
     setError({});
     setLoading(true);
+    console.log(checkedValue);
     dispatch(deleteAdmin(checkedValue));
   };
 

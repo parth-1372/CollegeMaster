@@ -448,11 +448,13 @@ export const getAdmin = async (req, res) => {
 
 export const deleteAdmin = async (req, res) => {
   try {
-    const admins = req.body;
+    
+    const admins = req.body; 
+    
     const errors = { noAdminError: String };
     for (var i = 0; i < admins.length; i++) {
       var admin = admins[i];
-
+      console.log(admin);
       await Admin.findOneAndDelete({ _id: admin });
     }
     res.status(200).json({ message: "Admin Deleted" });

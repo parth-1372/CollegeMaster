@@ -132,6 +132,7 @@ export const getAdmin = (formData) => async (dispatch) => {
 export const deleteAdmin = (formData) => async (dispatch) => {
   try {
     const { data } = await api.deleteAdmin(formData);
+    console.log(data);
     alert("Admin Deleted");
     dispatch({ type: DELETE_ADMIN, payload: true });
   } catch (error) {
