@@ -31,7 +31,7 @@ export const adminLogin = async (req, res) => {
         id: existingAdmin._id,
       },
       "sEcReT",
-      { expiresIn: "1h" }
+      { expiresIn: "3h" }
     );
 
     res.status(200).json({ result: existingAdmin, token: token });
