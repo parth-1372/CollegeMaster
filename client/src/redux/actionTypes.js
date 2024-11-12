@@ -34,3 +34,11 @@ export const DELETE_STUDENT = "DELETE_STUDENT";
 export const DELETE_SUBJECT = "DELETE_SUBJECT";
 export const CREATE_NOTICE = "CREATE_NOTICE";
 export const GET_NOTICE = "GET_NOTICE";
+
+
+//Addign New Features
+
+export const GET_STUDYMATERIAL = "GET_STUDYMATERIAL";
+
+export const ADD_STUDYMATERIAL = "ADD_STUDYMATERIAL";
+

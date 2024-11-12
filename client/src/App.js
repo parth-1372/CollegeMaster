@@ -43,6 +43,8 @@ import DeleteStudent from "./components/admin/deleteStudent/DeleteStudent";
 import DeleteSubject from "./components/admin/deleteSubject/DeleteSubject";
 import CreateNotice from "./components/admin/createNotice/CreateNotice";
 
+import AddStudyMaterial from "./components/faculty/studymaterial/studyMaterial";
+
 const App = () => {
   return (
     <Routes>
@@ -97,6 +99,7 @@ const App = () => {
       <Route path="/student/subjectlist" element={<SubjectList />} />
       <Route path="/student/testresult" element={<TestResult />} />
       <Route path="/student/attendance" element={<Attendance />} />
+      <Route path="/faculty/addstudymaterial" element={<AddStudyMaterial />}/>
     </Routes>
   );
 };
