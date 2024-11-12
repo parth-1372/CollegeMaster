@@ -23,6 +23,9 @@ router.post("/gettest", auth, getTest);
 router.post("/getstudent", auth, getStudent);
 router.post("/uploadmarks", auth, uploadMarks);
 router.post("/markattendance", auth, markAttendance);
+router.post("/createstudymaterial", auth, createStudyMaterial);
+router.get("/getstudymaterial", auth, getStudyMaterial);
+
 
 router.post("/addstudymaterial", auth, createStudyMaterial);
 router.post("/getstudymaterial", getStudyMaterial);
