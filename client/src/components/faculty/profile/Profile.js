@@ -1,14 +1,18 @@
+
+
+
 // import React from "react";
 // import Body from "./Body";
 // import Header from "../Header";
 // import Sidebar from "../Sidebar";
 
+// import * as classes from "../../../utils/styles";
 // const Profile = () => {
 //   return (
-//     <div className="bg-[#d6d9e0] h-screen flex items-center justify-center">
-//       <div className="flex flex-col  bg-[#f4f6fa] h-5/6 w-[95%] rounded-2xl shadow-2xl space-y-6 ">
+//     <div className="bg-[#d6d9e0] h-screen flex items-center justify-center overflow-hidden">
+//       <div className={classes.rootPage}>
 //         <Header />
-//         <div className="flex flex-[0.95]">
+//         <div className={classes.barAndBody}>
 //           <Sidebar />
 //           <Body />
 //         </div>
@@ -18,6 +22,7 @@
 // };
 
 // export default Profile;
+
 
 
 
@@ -27,12 +32,13 @@ import Header from "../Header";
 import Sidebar from "../Sidebar";
 
 import * as classes from "../../../utils/styles";
+
 const Profile = () => {
   return (
-    <div className="bg-[#d6d9e0] h-screen flex items-center justify-center overflow-hidden">
-      <div className={classes.rootPage}>
+    <div className="bg-black text-white h-screen flex items-center justify-center overflow-hidden">
+      <div className={`${classes.rootPage} bg-black text-white`}>
         <Header />
-        <div className={classes.barAndBody}>
+        <div className={`${classes.barAndBody} bg-black text-white`}>
           <Sidebar />
           <Body />
         </div>
@@ -42,29 +48,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-
-
-
-
-
-// import React from "react";
-// import Body from "./Body";
-// import Header from "../Header";
-// import Sidebar from "../Sidebar";
-
-// const Profile = () => {
-//   return (
-//     <div className="bg-[#d6d9e0] min-h-screen flex items-center justify-center">
-//       <div className="flex flex-col bg-[#f4f6fa] h-5/6 w-[95%] max-w-4xl rounded-2xl shadow-2xl space-y-6 overflow-hidden">
-//         <Header />
-//         <div className="flex flex-col md:flex-row flex-1">
-//           <Sidebar />
-//           <Body />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Profile;

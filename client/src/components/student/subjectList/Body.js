@@ -38,7 +38,7 @@ const Body = () => {
           <MenuBookIcon />
           <h1 className="text-lg md:text-xl">All Subjects</h1>
         </div>
-        <div className="bg-white rounded-xl pt-6 pl-4 pr-4 h-auto md:h-full md:overflow-hidden">
+        <div className="bg-black text-white rounded-xl pt-6 pl-4 pr-4 h-auto md:h-full md:overflow-hidden">
           <div className="mr-4 md:mr-6">
             <div className={classes.loadingAndError}>
               {/* Display error message if there's an error related to subjects */}
@@ -62,7 +62,7 @@ const Body = () => {
                   {subjects.map((sub, idx) => (
                     <div
                       key={idx}
-                      className="bg-gray-100 p-4 rounded-lg shadow-md grid gap-2 text-xs"
+                      className="bg-gray-800 text-white p-4 rounded-lg shadow-md grid gap-2 text-xs"
                     >
                       <div>
                         <span className="font-semibold">Sr no:</span> {idx + 1}

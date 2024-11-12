@@ -65,13 +65,13 @@ const Body = () => {
           className={classes.deleteChild}
           onSubmit={handleSubmit}
         >
-          <label htmlFor="department" className="text-sm md:text-base">
+          <label htmlFor="department" className="md:text-base text-white">
             Department
           </label>
           <Select
             required
             displayEmpty
-            sx={{ height: 36, width: 224 }} // Matching width with Select input
+            sx={{ height: 36, width: 224,backgroundColor: "white" }} // Matching width with Select input
             inputProps={{ "aria-label": "Without label" }}
             value={department}
             onChange={(e) => setDepartment(e.target.value)}

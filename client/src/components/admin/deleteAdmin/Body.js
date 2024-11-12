@@ -48,7 +48,6 @@ const Body = () => {
   const dltAdmin = () => {
     setError({});
     setLoading(true);
-    console.log(checkedValue);
     dispatch(deleteAdmin(checkedValue));
   };
 
@@ -76,15 +75,15 @@ const Body = () => {
           <DeleteIcon />
           <h1 className="text-lg md:text-xl">Delete Admin</h1>
         </div>
-        <div className={`${classes.deletePar} ${isMobile ? 'h-[90vh]' : 'h-150px'} flex flex-col`}>
+        <div className= {classes.bodyp}>
           <form className={classes.deleteChild} onSubmit={handleSubmit}>
-            <label htmlFor="department" className="text-sm md:text-base">
+            <label htmlFor="department" className="text-sm md:text-base text-white">
               Department
             </label>
             <Select
               required
               displayEmpty
-              sx={{ height: 36, width: 224 }}
+              sx={{ height: 36, width: 224  ,backgroundColor: "white"}}
               inputProps={{ "aria-label": "Without label" }}
               value={value.department}
               onChange={(e) => setValue({ ...value, department: e.target.value })}

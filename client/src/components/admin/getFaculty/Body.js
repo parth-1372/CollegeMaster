@@ -68,13 +68,13 @@ const Body = () => {
             className="flex flex-col items-center space-y-3 md:items-start"
             onSubmit={handleSubmit}
           >
-            <label htmlFor="department" className="text-sm md:text-base">
+            <label htmlFor="department" className="text-white md:text-base">
               Department
             </label>
             <Select
               required
               displayEmpty
-              sx={{ height: 36, width: '100%', maxWidth: 224 }}
+              sx={{ height: 36, width: '100%', maxWidth: 224 ,backgroundColor: "white"}}
               inputProps={{ "aria-label": "Without label" }}
               value={department}
               onChange={(e) => setDepartment(e.target.value)}

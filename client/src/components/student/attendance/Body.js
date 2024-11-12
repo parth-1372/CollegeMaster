@@ -29,13 +29,13 @@ const Body = () => {
   }, []);
 
   return (
-    <div className="flex-[0.8] mt-3 px-3 md:px-6 bg-white">
+    <div className="flex-[0.8] mt-3 px-3 md:px-6 bg-black text-white">
       <div className="space-y-5">
         <div className="flex text-gray-400 items-center space-x-2">
           <MenuBookIcon />
           <h1 className="text-lg md:text-xl">Attadance</h1>
         </div>
-        <div className="mr-10 bg-white rounded-xl pt-6 pl-6 h-auto md:h-[29.5rem] overflow-y-auto">
+        <div className="mr-10 bg-black text-white rounded-xl pt-6 pl-6 h-auto md:h-[29.5rem] overflow-y-auto">
           <div className="col-span-3 mr-6">
             <div className={classes.loadingAndError}>
               {loading && (
@@ -83,7 +83,7 @@ const Body = () => {
                   {/* Mobile view - Stacked Compact Layout */}
                   <div className="block md:hidden">
                     {attendance?.map((res, idx) => (
-                      <div key={idx} className="bg-gray-100 p-4 rounded-lg shadow-md grid grid-cols-1 gap-2 text-xs md:text-sm lg:text-base mb-4">
+                      <div key={idx} className="bg-gray-800 p-4 rounded-lg shadow-md grid grid-cols-1 gap-2 text-xs md:text-sm lg:text-base mb-4">
                         <div><strong>Sr No:</strong> {idx + 1}</div>
                         <div><strong>Subject Code:</strong> {res.subjectCode}</div>
                         <div><strong>Subject Name:</strong> {res.subjectName}</div>

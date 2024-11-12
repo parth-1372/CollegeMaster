@@ -72,7 +72,7 @@ const Body = () => {
         <AddIcon />
         <h1 className="text-lg md:text-xl">Add Subject</h1>
       </div>
-      <div className="mr-0 md:mr-10 bg-white flex flex-col rounded-xl p-4">
+      <div className= {classes.bodyp}>
         <form className={classes.adminForm0} onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-5">
             {/* Left Form Section */}
@@ -110,7 +110,7 @@ const Body = () => {
                 <Select
                   required
                   displayEmpty
-                  sx={{ height: 36 }}
+                  sx={{ height: 36 ,backgroundColor: "white" }}
                   inputProps={{ "aria-label": "Without label" }}
                   value={value.year}
                   onChange={(e) =>
@@ -147,7 +147,7 @@ const Body = () => {
                 <Select
                   required
                   displayEmpty
-                  sx={{ height: 36 }}
+                  sx={{ height: 36  ,backgroundColor: "white"}}
                   inputProps={{ "aria-label": "Without label" }}
                   value={value.department}
                   onChange={(e) =>

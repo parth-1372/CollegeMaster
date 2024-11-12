@@ -4,7 +4,7 @@ import Header from "../../Header";
 import Sidebar from "../../Sidebar";
 import { useDispatch } from "react-redux";
 import { getAllDepartment } from "../../../../redux/actions/adminActions";
-
+import * as classes from "../../../../utils/styles"; 
 const Update = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -12,9 +12,9 @@ const Update = () => {
   }, [dispatch]);
   return (
     <div className="bg-[#d6d9e0] h-screen flex items-center justify-center">
-      <div className="flex flex-col  bg-[#f4f6fa] h-5/6 w-[95%] rounded-2xl shadow-2xl space-y-6 ">
+      <div className={classes.rootPage}>
         <Header />
-        <div className="flex flex-[0.95]">
+        <div className={classes.barAndBody}>
           <Sidebar />
           <Body />
         </div>

@@ -17,7 +17,7 @@ const AddStudent = () => {
     <div className="bg-[#d6d9e0] h-screen flex items-center justify-center">
       <div className={classes.rootPage}>
         <Header />
-        <div className="flex">  {/* Using centralized style */}
+        <div className={`${classes.barAndBody}`}>  {/* Using centralized style */}
           <Sidebar />
           <Body />
         </div>

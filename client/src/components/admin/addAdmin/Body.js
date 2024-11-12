@@ -43,7 +43,7 @@ const Body = () => {
           <EngineeringIcon />
           <h1 className="text-lg md:text-xl">Add Admin</h1>
         </div>
-        <div className="mr-0 md:mr-20 bg-white flex flex-col rounded-xl p-4 md:flex-row overflow-hidden shadow-md">
+        <div className= {classes.bodyp}>
           <div className="overflow-y-auto max-h-[75vh] md:max-h-[80vh] space-y-6 p-4 flex-1">
             <form className="space-y-6 w-full" onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col md:flex-row md:space-x-8 space-y-8 md:space-y-0">
@@ -103,7 +103,7 @@ const Body = () => {
                     <Select
                       defaultValue=""
                       displayEmpty
-                      sx={{ height: 36, minWidth: "100%", maxWidth: "400px" }}
+                      sx={{ height: 36, minWidth: "100%", maxWidth: "400px" ,backgroundColor: "white" }}
                       {...register("department", { required: "Department is required" })}
                     >
                       <MenuItem value="">None</MenuItem>
@@ -164,10 +164,10 @@ const Body = () => {
             </form>
 
             {response && (
-              <div className="mt-4 p-4 border rounded shadow-md">
-                <h3 className="text-lg font-semibold">Admin Created Successfully!</h3>
-                <p>Username: {response.response.username}</p>
-                <p>Default Password: "DD-MM-YYYY"</p>
+              <div className="mt-4 p-4 border rounded shadow-md txt-white">
+                <h3 className=" text-white font-semibold">Admin Created Successfully!</h3>
+                <p className=" text-white font-semibold">Username: {response.response.username}</p>
+                <p className=" text-white font-semibold">Default Password: "DD-MM-YYYY"</p>
                 <a href="/admin/update/password" className="text-blue-500">Update Password</a>
               </div>
             )}

@@ -79,13 +79,13 @@ const Body = () => {
         </div>
         <div className={`${classes.deletePar} flex flex-col`} style={{ height: isMobile ? '90vh' : 'auto' }}>
           <form className={`${classes.deleteChild}`} onSubmit={handleSubmit}>
-            <label htmlFor="department" className="text-sm md:text-base">
+            <label htmlFor="department" className="text-white md:text-base">
               Department
             </label>
             <Select
               required
               displayEmpty
-              sx={{ height: 36, width: '100%' }}
+              sx={{ height: 36, width: '100%',backgroundColor: "white" }}
               inputProps={{ "aria-label": "Without label" }}
               value={value.department}
               onChange={(e) => setValue({ ...value, department: e.target.value })}
@@ -98,13 +98,13 @@ const Body = () => {
               ))}
             </Select>
 
-            <label htmlFor="year" className="text-sm md:text-base mt-4">
+            <label htmlFor="year" className="text-white md:text-base mt-4">
               Year
             </label>
             <Select
               required
               displayEmpty
-              sx={{ height: 36, width: '100%' }}
+              sx={{ height: 36, width: '100%' ,backgroundColor: "white"}}
               inputProps={{ "aria-label": "Without label" }}
               value={value.year}
               onChange={(e) => setValue({ ...value, year: e.target.value })}

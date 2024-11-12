@@ -82,7 +82,7 @@ const Body = () => {
           </div>
         </div>
 
-        <div className=" mr-10 bg-white flex flex-col rounded-xl ">
+        <div className= {classes.bodyp}>
           <form className={classes.adminForm0} onSubmit={handleSubmit}>
             <div className={classes.adminForm1}>
               <div className={classes.adminForm2l}>
@@ -128,7 +128,7 @@ const Body = () => {
                   <h1 className={classes.adminLabel}>Department :</h1>
                   <Select
                     displayEmpty
-                    sx={{ height: 36 }}
+                    sx={{ height: 36  ,backgroundColor: "white"}}
                     inputProps={{ "aria-label": "Without label" }}
                     value={value.department}
                     onChange={(e) =>
