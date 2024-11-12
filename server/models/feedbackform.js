@@ -1,27 +1,60 @@
 import mongoose from "mongoose";
-const { Schema } = mongoose;
-const feedbackSchema = new Schema({
-  student: {
-    type: Schema.Types.ObjectId,
-    ref: "student",
-  },
-  subject: {
-    type: Schema.Types.ObjectId,
-    ref: "subject",
-  },
-  isFilled: {
-    type: Boolean,
-    default: false,
-  },
+
+const feedbackSchema = mongoose.Schema({
+    studentId: {
+        type: String,
+        required: true,
+    },
+    subjectCode: {
+        type: String,
+        required: true,
+    },
+    department: {
+        type: String,
+        required: true,
+    },
+    year: {
+        type: String,
+        required: true,
+    },
+    section: {
+        type: String,
+        required: true,
+    },
     feedback: {
         type: String,
-        default: "",
+        required: true,
     },
-    rating: {
+    clarityRating: {
         type: Number,
-        default: 0,
+        required: true,
+        min: 1,
+        max: 5,
     },
-
+    knowledgeRating: {
+        type: Number,
+        required: true,
+        min: 1,
+        max: 5,
+    },
+    presentationRating: {
+        type: Number,
+        required: true,
+        min: 1,
+        max: 5,
+    },
+    helpfulnessRating: {
+        type: Number,
+        required: true,
+        min: 1,
+        max: 5,
+    },
+    engagementRating: {
+        type: Number,
+        required: true,
+        min: 1,
+        max: 5,
+    },
 });
 
-export default mongoose.model("attendance", attendenceSchema);
+export default mongoose.model("feedback", feedbackSchema);

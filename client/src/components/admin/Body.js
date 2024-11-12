@@ -68,7 +68,7 @@ const Body = () => {
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           {/* Calendar */}
           <div className="bg-white h-[17rem] rounded-xl shadow-lg w-full md:w-1/3">
-            <Calendar onChange={onChange} value={value} />
+            <Calendar onChange={onChange} value={value} className="custom-calendar" />
           </div>
 
           {/* Notices */}
