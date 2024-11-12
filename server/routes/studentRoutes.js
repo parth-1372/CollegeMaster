@@ -17,4 +17,5 @@ router.post("/testresult", auth, testResult);
 router.post("/attendance", auth, attendance);
 router.get("/getstudymaterial", auth, getStudyMaterial);
 
+
 export default router;

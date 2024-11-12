@@ -53,4 +53,5 @@ router.post("/deletestudent", auth, deleteStudent);
 router.post("/deletedepartment", auth, deleteDepartment);
 router.post("/deletesubject", auth, deleteSubject);
 
+
 export default router;
