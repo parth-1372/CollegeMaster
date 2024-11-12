@@ -107,7 +107,7 @@ export const addAdmin = async (req, res) => {
   try {
     const { name, dob, department, contactNumber, avatar, email, joiningYear } = req.body;
     const errors = {};
-    
+    conole.log(avatar);
     // Check for existing admin with the same email
     const existingAdmin = await Admin.findOne({ email });
     if (existingAdmin) {
@@ -280,6 +280,8 @@ export const addFaculty = async (req, res) => {
       gender,
       designation,
     } = req.body;
+
+    console.log(req.body);
     const errors = { emailError: String };
     const existingFaculty = await Faculty.findOne({ email });
     if (existingFaculty) {
@@ -499,10 +501,13 @@ export const deleteStudent = async (req, res) => {
 export const deleteSubject = async (req, res) => {
   try {
     const subjects = req.body;
+
+    
+    console.log(req.body);
     const errors = { noSubjectError: String };
     for (var i = 0; i < subjects.length; i++) {
       var subject = subjects[i];
-
+      console.log(subject);
       await Subject.findOneAndDelete({ _id: subject });
     }
     res.status(200).json({ message: "Subject Deleted" });
@@ -515,6 +520,7 @@ export const deleteSubject = async (req, res) => {
 
 export const deleteDepartment = async (req, res) => {
   try {
+    console.log(req);
     const { department } = req.body;
 
     await Department.findOneAndDelete({ department });
@@ -673,3 +679,6 @@ export const getAllSubject = async (req, res) => {
     console.log("Backend Error", error);
   }
 };
+
+
+

@@ -44,6 +44,10 @@ import DeleteSubject from "./components/admin/deleteSubject/DeleteSubject";
 import CreateNotice from "./components/admin/createNotice/CreateNotice";
 
 import AddStudyMaterial from "./components/faculty/studymaterial/studyMaterial";
+import GetAllStudyMaterial from "./components/faculty/getAllStudyMaterial/getAllStudyMaterial"; // Ensure correct path
+
+// Usage in JSX
+<GetAllStudyMaterial />
 
 const App = () => {
   return (
@@ -87,6 +91,9 @@ const App = () => {
       <Route path="/faculty/createtest" element={<CreateTest />} />
       <Route path="/faculty/uploadmarks" element={<UploadMarks />} />
       <Route path="/faculty/markattendance" element={<MarkAttendance />} />
+      <Route path="/faculty/addstudymaterial" element={<AddStudyMaterial />}/>
+      <Route path="/faculty/getAllStudyMaterial" element={<GetAllStudyMaterial/>}/>
+      
 
       {/* Student  */}
       
@@ -99,7 +106,8 @@ const App = () => {
       <Route path="/student/subjectlist" element={<SubjectList />} />
       <Route path="/student/testresult" element={<TestResult />} />
       <Route path="/student/attendance" element={<Attendance />} />
-      <Route path="/faculty/addstudymaterial" element={<AddStudyMaterial />}/>
+      
+      {/* <Route path="/student/studymaterial" element={<StuStudyMaterial />} /> */}
     </Routes>
   );
 };

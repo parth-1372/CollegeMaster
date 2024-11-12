@@ -106,7 +106,9 @@ export const getAttendance = (attendance) =>
 //Adding Features
 
 export const getStudyMaterial = (studymaterial) => 
-  API.get("/api/faculty/getstudymaterial",studymaterial);
+  API.post("/api/faculty/getstudymaterial",studymaterial);
+
+  
 
 export const addStudyMaterial = (studymaterial) => 
   API.post("/api/faculty/addstudymaterial",studymaterial);

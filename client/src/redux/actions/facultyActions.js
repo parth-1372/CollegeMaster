@@ -115,19 +115,25 @@ export const markAttendance =
   //Adding features
   export const addStudyMaterial = (formData) => async (dispatch) => {
     try {
+      console.log(formData);
       const { data } = await api.addStudyMaterial(formData);
       alert("Study Material Added Successfully");
-  
+      console.log(data);
       dispatch({ type: ADD_STUDYMATERIAL , payload: true });
     } catch (error) {
-      dispatch({ type: SET_ERRORS, payload: error.response.data });
+      dispatch({ type: SET_ERRORS, payload: error.response.data.result });
     }
   };
   
-  export const getstudymaterial = (formData) => async (dispatch) => {
+  export const getstudymaterial = (formData1) => async (dispatch) => {
     try {
-      const { data } = await api.getStudyMaterial(formData);
+      console.log('in getstudy material')
+      console.log(formData1);
+      console.log('in getstudy material')
+      const { data } = await api.getStudyMaterial(formData1);
+      console.log(data);
       dispatch({ type: GET_STUDYMATERIAL, payload: data });
+      return data;
     } catch (error) {
       dispatch({ type: SET_ERRORS, payload: error.response.data });
     }

@@ -87,6 +87,7 @@ const Body = () => {
   }, [value.year, value.section]);
 
   return (
+    
     <div className="flex flex-col flex-[0.8] mt-3 px-4 bg-[#f4f6fa] rounded-2xl shadow-2xl h-full overflow-y-auto">
       <div className="space-y-5 p-6">
         <div className="flex text-gray-400 items-center space-x-2">

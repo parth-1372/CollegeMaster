@@ -6,6 +6,7 @@ import Marks from "../models/marks.js";
 import Attendence from "../models/attendance.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import studyMaterial from "../models/studyMaterial.js";
 
 export const facultyLogin = async (req, res) => {
   const { username, password } = req.body;
@@ -269,4 +270,62 @@ export const markAttendance = async (req, res) => {
     errors.backendError = error;
     res.status(500).json(errors);
   }
+};
+
+export const createStudyMaterial = async (req, res) => {
+  try {
+    console.log(req.body);
+    const { subjectCode, department, year, section, date, material ,title } =
+      req.body;
+      const errors = { testError: String };
+    const existingMaterial = await studyMaterial.findOne({
+      subjectCode,
+      department,
+      year,
+      section,
+      title,
+    });
+    if (existingMaterial) {
+      errors.testError = "Given Material Name  is already created";
+      return res.status(400).json(errors);
+    }
+
+    const newMaterial = await new studyMaterial({
+      section,
+      title,
+      date,
+      department,
+      subjectCode,
+      year,
+      material,
+    });
+
+    await newMaterial.save();
+    return res.status(200).json({
+      success: true,
+      message: "Study material added successfully",
+      response: newMaterial,
+    });
+  } catch (error) {
+    const errors = { backendError: String };
+    errors.backendError = error;
+    res.status(500).json(errors);
+  }
+};
+
+
+export const getStudyMaterial = async (req, res) => {
+  try {
+    const { department, year, section ,subjectCode } = req.body;
+    console.log("REques")
+    console.log(req.body)
+    const material = await studyMaterial.find({ department, year, section , subjectCode });
+    console.log("material")
+    console.log(material)
+    res.status(200).json({ result: material });
+  } catch (error) {
+    const errors = { backendError: String };
+    errors.backendError = error;
+    res.status(500).json(errors);
+  }
 };
