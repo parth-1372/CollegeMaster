@@ -23,6 +23,7 @@ import {
   DELETE_SUBJECT,
   CREATE_NOTICE,
   GET_NOTICE,
+  FEEDBACK_A,
 } from "../actionTypes";
 import * as api from "../api";
 
@@ -249,6 +250,18 @@ export const getNotice = (formData) => async (dispatch) => {
   try {
     const { data } = await api.getNotice(formData);
     dispatch({ type: GET_NOTICE, payload: data });
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
+
+export const feedback = (formData) => async (dispatch) => {
+  try {
+    // console.log(formData)
+
+    const { data } = await api.feedbackA(formData);
+    // console.log(data);
+    dispatch({ type: FEEDBACK_A, payload: data });
   } catch (error) {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }

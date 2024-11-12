@@ -7,7 +7,8 @@ import Attendence from "../models/attendance.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import studyMaterial from "../models/studyMaterial.js";
-
+import feedbackform from "../models/feedbackform.js";
+// import {feedback as feedbackModel} from "../models/feedbackform.js"
 export const studentLogin = async (req, res) => {
   const { username, password } = req.body;
   const errors = { usernameError: String, passwordError: String };
@@ -261,3 +262,40 @@ export const getSubject = async (req, res) => {
     res.status(500).json(errors);
   }
 };
+
+
+//Adding Feedback
+
+export const feedback = async (req, res) => {
+  
+  const { studentId, subjectCode, department, year, section, feedback, clarityRating, knowledgeRating, presentationRating, helpfulnessRating, engagementRating } = req.body;
+  console.log("In backend")
+  console.log(req.body);
+  try {
+    const existingFeedback = await feedbackform.findOne({ studentId, subjectCode });
+    if (existingFeedback) {
+      return res.status(400).json({ error: "Feedback already exists" });
+    }
+    console.log("Not exsiting feedback");
+    const newFeedback = new feedbackform({
+      studentId,
+      subjectCode,
+      department,
+      year,
+      section,
+      feedback,
+      clarityRating,
+      knowledgeRating,
+      presentationRating,
+      helpfulnessRating,
+      engagementRating,
+    });
+    console.log("created",newFeedback);
+    await newFeedback.save();
+    console.log("Saved");
+    res.status(201).json({ message: "Feedback submitted successfully",
+    response: newFeedback });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error", details: error.message });
+  }
+}

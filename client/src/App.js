@@ -46,6 +46,8 @@ import CreateNotice from "./components/admin/createNotice/CreateNotice";
 import AddStudyMaterial from "./components/faculty/studymaterial/studyMaterial";
 import GetAllStudyMaterial from "./components/faculty/getAllStudyMaterial/getAllStudyMaterial"; // Ensure correct path
 import GetAllStudyMaterialStudent from "./components/student/studymaterial/studyMaterial";
+import Feedback from "./components/student/feedbak/Feedback";
+import FeedbackA from "./components/admin/feeback/feeback";
 
 // Usage in JSX
 <GetAllStudyMaterial />
@@ -80,7 +82,7 @@ const App = () => {
       <Route path="/admin/addsubject" element={<AddSubject />} />
       <Route path="/admin/allsubject" element={<GetSubject />} />
       <Route path="/admin/allstudent" element={<GetStudent />} />
-
+      <Route path="/admin/feedback" element={<FeedbackA />} />
       {/* Faculty  */}
 
       <Route path="/login/facultylogin" element={<FacultyLogin />} />
@@ -109,6 +111,7 @@ const App = () => {
       <Route path="/student/attendance" element={<Attendance />} />
       
       <Route path="/student/studymaterial" element={<GetAllStudyMaterialStudent />} />
+      <Route path="/student/feedback" element={< Feedback />} />
     </Routes>
   );
 };

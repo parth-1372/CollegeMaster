@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const feedbackSchema = mongoose.Schema({
     studentId: {
         type: String,
@@ -23,7 +22,6 @@ const feedbackSchema = mongoose.Schema({
     },
     feedback: {
         type: String,
-        required: true,
     },
     clarityRating: {
         type: Number,

@@ -87,7 +87,7 @@ const Body = () => {
           <AddIcon />
           <h1>Add Study Material</h1>
         </div>
-        <div className="mr-10 bg-white flex flex-col rounded-xl">
+        <div className="mr-10 bg-black text-white flex flex-col rounded-xl">
           <form className={classes.adminForm0} onSubmit={handleSubmit}>
             <div className={classes.adminForm1}>
               <div className={classes.adminForm2l}>
@@ -136,7 +136,7 @@ const Body = () => {
                   <Select
                     required
                     displayEmpty
-                    sx={{ height: 36 }}
+                    sx={{ height: 36 , backgroundColor:'white', color:'black'}}
                     inputProps={{ "aria-label": "Without label" }}
                     value={value.year}
                     onChange={(e) =>
@@ -158,7 +158,7 @@ const Body = () => {
                   <Select
                     required
                     displayEmpty
-                    sx={{ height: 36 }}
+                    sx={{ height: 36 ,backgroundColor:'white', color:'black'}}
                     inputProps={{ "aria-label": "Without label" }}
                     value={value.section}
                     onChange={(e) =>

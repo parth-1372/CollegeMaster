@@ -94,3 +94,18 @@ export const getAttendance =
       dispatch({ type: SET_ERRORS, payload: error.response.data });
     }
   };
+
+  export const feedback =
+  (formData) => async (dispatch) => {
+    try {
+      console.log("Formdata");
+      console.log(formData);
+      const { data } = await api.feedback(formData);
+      console.log("DAta");
+      console.log(data);
+      alert("Feedback Updated");
+      dispatch({ type: ATTENDANCE, payload: data });
+    } catch (error) {
+      dispatch({ type: SET_ERRORS, payload: error.response.data });
+    }
+  };

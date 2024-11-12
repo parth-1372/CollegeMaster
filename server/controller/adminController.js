@@ -6,6 +6,7 @@ import Subject from "../models/subject.js";
 import Notice from "../models/notice.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import feedbackform from "../models/feedbackform.js";
 
 export const adminLogin = async (req, res) => {
   const { username, password } = req.body;
@@ -680,5 +681,22 @@ export const getAllSubject = async (req, res) => {
   }
 };
 
+//Adding Feeback
+export const feedback = async (req, res) => {
+  const {subjectCode , department,year ,section} = req.body;
+  console.log("In backend");
+  console.log(req.body);
+  try {
+    const feedbacks = await feedbackform.find({ subjectCode , department,year ,section });
+    console.log("Feeddhdihdofihsdoifhndfih");
+    console.log(feedbacks);
+    res.status(200).json({ result: feedbacks });
+  } catch (error) {
+    const errors = { backendError: String };
+    errors.backendError = error;
+    res.status(500).json(errors);
+  }
+
+}
 
 

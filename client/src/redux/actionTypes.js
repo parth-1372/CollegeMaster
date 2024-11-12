@@ -42,3 +42,8 @@ export const GET_STUDYMATERIAL = "GET_STUDYMATERIAL";
 
 export const ADD_STUDYMATERIAL = "ADD_STUDYMATERIAL";
 
+//Add feedback
+
+export const FEEDBACK_STU = "FEEDBACK_STU";
+
+export const FEEDBACK_A = "FEEDBACK_A";

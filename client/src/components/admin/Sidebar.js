@@ -1,3 +1,6 @@
+
+
+
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
@@ -64,18 +67,17 @@ const Sidebar = () => {
   return (
     <div className="relative" ref={sidebarRef}>
       {/* Hamburger Icon */}
-      <div className="md:hidden p-2 cursor-pointer text-white z-50" onClick={handleSidebarToggle}>
+      <div className="md:hidden p-2 cursor-pointer text-white" onClick={handleSidebarToggle}>
         <MenuIcon />
       </div>
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full bg-1e1e2d transition-transform duration-300 ${
+        className={`fixed top-0 left-0 h-full bg-black transition-transform duration-300 z-50 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:relative md:translate-x-0 md:flex-[0.2] z-index: 100`}
+        } md:relative md:translate-x-0 md:flex-[0.2]`}
       >
-        {/* height updated */}
-        <div className="z-index:100 space-y-8 overflow-y-scroll scrollbar-thin scrollbar-track-white scrollbar-thumb-gray-300 h-[99%]">
+        <div className="space-y-8 overflow-y-scroll scrollbar-thin scrollbar-track-white scrollbar-thumb-gray-300 h-[99%] ">
           <div>
             <NavLink
               to="/admin/home"
@@ -224,6 +226,17 @@ const Sidebar = () => {
               <h1 className="font-normal">Delete Subject</h1>
             </NavLink>
           </div>
+          <div>
+            <NavLink
+              to="/admin/feedback"
+              className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}
+              onClick={handleNavLinkClick}
+            >
+              <BoyIcon />
+              <h1 className="font-normal">Show Feedback</h1>
+            </NavLink>
+          </div>
+
         </div>
       </div>
     </div>

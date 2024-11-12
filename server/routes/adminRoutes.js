@@ -25,6 +25,7 @@ import {
   deleteSubject,
   createNotice,
   getNotice,
+  feedback,
 } from "../controller/adminController.js";
 const router = express.Router();
 
@@ -52,6 +53,6 @@ router.post("/deletefaculty", auth, deleteFaculty);
 router.post("/deletestudent", auth, deleteStudent);
 router.post("/deletedepartment", auth, deleteDepartment);
 router.post("/deletesubject", auth, deleteSubject);
-
+router.post("/feedback", auth, feedback);
 
 export default router;
