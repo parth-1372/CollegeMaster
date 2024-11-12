@@ -6,6 +6,7 @@ import Marks from "../models/marks.js";
 import Attendence from "../models/attendance.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import studyMaterial from "../models/studyMaterial.js";
 
 export const studentLogin = async (req, res) => {
   const { username, password } = req.body;
@@ -225,3 +226,18 @@ export const attendance = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+export const getStudyMaterial = async (req, res) => {
+  try {
+    const { department, year, section ,subjectCode } = req.body;
+
+    const material = await studyMaterial.find({ department, year, section , subjectCode });
+
+    res.status(200).json({ result: material });
+  } catch (error) {
+    const errors = { backendError: String };
+    errors.backendError = error;
+    res.status(500).json(errors);
+  }
+};
+
