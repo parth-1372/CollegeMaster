@@ -227,11 +227,13 @@ export const attendance = async (req, res) => {
   }
 };
 
+
+//Adding Features
 export const getStudyMaterial = async (req, res) => {
   try {
-    const { department, year, section ,subjectCode } = req.body;
+    const { department, year, section, subjectCode } = req.body;
 
-    const material = await studyMaterial.find({ department, year, section , subjectCode });
+    const material = await studyMaterial.find({ department, year, section, subjectCode });
 
     res.status(200).json({ result: material });
   } catch (error) {
@@ -241,3 +243,21 @@ export const getStudyMaterial = async (req, res) => {
   }
 };
 
+
+export const getSubject = async (req, res) => {
+  try {
+    const { department, year } = req.body;
+    const errors = { noSubjectError: String };
+
+    const subjects = await Subject.find({ department, year });
+    if (subjects.length === 0) {
+      errors.noSubjectError = "No Subject Found";
+      return res.status(404).json(errors);
+    }
+    res.status(200).json({ result: subjects });
+  } catch (error) {
+    const errors = { backendError: String };
+    errors.backendError = error;
+    res.status(500).json(errors);
+  }
+};

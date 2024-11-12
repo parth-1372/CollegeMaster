@@ -1,9 +1,5 @@
 import mongoose from "mongoose";
-<<<<<<< HEAD
 const { Schema } = mongoose;
-=======
-
->>>>>>> a5bc99ec1f5a846fba9b3b78297946d15067afe5
 const studyMaterialSchema = mongoose.Schema({
     title : {
         type: String,
@@ -36,8 +32,4 @@ const studyMaterialSchema = mongoose.Schema({
   },
 });
 
-<<<<<<< HEAD
 export default mongoose.model("studymaterial", studyMaterialSchema);
-=======
-export default mongoose.model("studymaterial", studyMaterialSchema);
->>>>>>> a5bc99ec1f5a846fba9b3b78297946d15067afe5

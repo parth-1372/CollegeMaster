@@ -223,6 +223,17 @@ const Sidebar = () => {
               <h1 className="font-normal">Delete Subject</h1>
             </NavLink>
           </div>
+          <div>
+            <NavLink
+              to="/admin/allsubject"
+              className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}
+              onClick={handleNavLinkClick}
+            >
+              <MenuBookIcon />
+              <h1 className="font-normal">Study Materials</h1>
+            </NavLink>
+            
+          </div>
         </div>
       </div>
     </div>

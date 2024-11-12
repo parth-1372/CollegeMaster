@@ -86,14 +86,9 @@ export const getAttendance =
   };
 
   //Adding features
-  export const getStudyMaterial = (department, year , subject) => async (dispatch) => {
+  export const getStudyMaterial = (formData) => async (dispatch) => {
     try {
-      const formData = {
-        department,
-        year,
-        subject,
-      };
-      const { data } = await api.getStudyMaterial(formData);
+      const { data } = await api.getStudyMaterialS(formData);
       dispatch({ type: GET_STUDYMATERIAL, payload: data });
     } catch (error) {
       dispatch({ type: SET_ERRORS, payload: error.response.data });

@@ -112,3 +112,6 @@ export const getStudyMaterial = (studymaterial) =>
 
 export const addStudyMaterial = (studymaterial) => 
   API.post("/api/faculty/addstudymaterial",studymaterial);
+
+export const getStudyMaterialS = (studymaterial) => 
+  API.post("/api/student/getstudymaterial",studymaterial);

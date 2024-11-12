@@ -5,6 +5,7 @@ import {
   updateStudent,
   testResult,
   attendance,
+  getStudyMaterial
 } from "../controller/studentController.js";
 import auth from "../middleware/auth.js";
 
@@ -16,6 +17,6 @@ router.post("/updateprofile", auth, updateStudent);
 router.post("/testresult", auth, testResult);
 router.post("/attendance", auth, attendance);
 router.get("/getstudymaterial", auth,  getStudyMaterial);
-
+router.post("/getstudymaterial", getStudyMaterial);
 
 export default router;

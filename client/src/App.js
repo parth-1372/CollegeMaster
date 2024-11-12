@@ -45,6 +45,7 @@ import CreateNotice from "./components/admin/createNotice/CreateNotice";
 
 import AddStudyMaterial from "./components/faculty/studymaterial/studyMaterial";
 import GetAllStudyMaterial from "./components/faculty/getAllStudyMaterial/getAllStudyMaterial"; // Ensure correct path
+import GetAllStudyMaterialStudent from "./components/student/studymaterial/studyMaterial";
 
 // Usage in JSX
 <GetAllStudyMaterial />
@@ -107,7 +108,7 @@ const App = () => {
       <Route path="/student/testresult" element={<TestResult />} />
       <Route path="/student/attendance" element={<Attendance />} />
       
-      {/* <Route path="/student/studymaterial" element={<StuStudyMaterial />} /> */}
+      <Route path="/student/studymaterial" element={<GetAllStudyMaterialStudent />} />
     </Routes>
   );
 };

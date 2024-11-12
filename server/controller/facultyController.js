@@ -271,22 +271,11 @@ export const markAttendance = async (req, res) => {
     res.status(500).json(errors);
   }
 };
-
-<<<<<<< HEAD
 export const createStudyMaterial = async (req, res) => {
   try {
-    console.log(req.body);
-    const { subjectCode, department, year, section, date, material ,title } =
-      req.body;
-      const errors = { testError: String };
-=======
-
-export const createStudyMaterial = async (req, res) => {
-  try {
-    const { subjectCode, department, year, section, date, material ,title } =
-      req.body;
+    const { subjectCode, department, year, section, date, material, title } = req.body;
     const errors = { testError: String };
->>>>>>> a5bc99ec1f5a846fba9b3b78297946d15067afe5
+
     const existingMaterial = await studyMaterial.findOne({
       subjectCode,
       department,
@@ -295,11 +284,7 @@ export const createStudyMaterial = async (req, res) => {
       title,
     });
     if (existingMaterial) {
-<<<<<<< HEAD
-      errors.testError = "Given Material Name  is already created";
-=======
-      errors.testError = "Given Test is already created";
->>>>>>> a5bc99ec1f5a846fba9b3b78297946d15067afe5
+      errors.testError = "Given Material Name is already created";
       return res.status(400).json(errors);
     }
 
@@ -326,30 +311,16 @@ export const createStudyMaterial = async (req, res) => {
   }
 };
 
-
 export const getStudyMaterial = async (req, res) => {
   try {
-    const { department, year, section ,subjectCode } = req.body;
-<<<<<<< HEAD
-    console.log("REques")
-    console.log(req.body)
-    const material = await studyMaterial.find({ department, year, section , subjectCode });
-    console.log("material")
-    console.log(material)
-=======
+    const { department, year, section, subjectCode } = req.body;
 
-    const material = await studyMaterial.find({ department, year, section , subjectCode });
+    const material = await studyMaterial.find({ department, year, section, subjectCode });
 
->>>>>>> a5bc99ec1f5a846fba9b3b78297946d15067afe5
     res.status(200).json({ result: material });
   } catch (error) {
     const errors = { backendError: String };
     errors.backendError = error;
     res.status(500).json(errors);
-<<<<<<< HEAD
-  }
-};
-=======
   }
 };
->>>>>>> a5bc99ec1f5a846fba9b3b78297946d15067afe5

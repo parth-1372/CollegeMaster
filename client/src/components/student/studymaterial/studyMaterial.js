@@ -1,30 +1,14 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import Body from "./Body";
 import Header from "../Header";
 import Sidebar from "../Sidebar";
-import Body from "./Body";
 
-import { getStudyMaterial } from "../../../redux/actions/studentActions";
-
-const StuStudyMaterial = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(
-      getStudyMaterial(
-        user.result.department,
-        user.result.year,
-        user.result.section,
-        user.result.subjectCode,
-      )
-    );
-  }, [dispatch]);
+const GetAllStudyMaterialStudent = () => {
   return (
-    <div className="bg-[#d6d9e0] h-screen flex items-center justify-center">
-      <div className="flex flex-col  bg-[#f4f6fa] h-5/6 w-[95%] rounded-2xl shadow-2xl space-y-6 overflow-y-hidden">
+    <div className="bg-[#d6d9e0] h-screen flex items-center justify-center overflow-hidden">
+      <div className="flex flex-col bg-[#f4f6fa] h-5/6 w-[95%] rounded-2xl shadow-2xl space-y-6 overflow-auto">
         <Header />
-        <div className="flex flex-[0.95]">
+        <div className="flex flex-[0.95] overflow-auto">
           <Sidebar />
           <Body />
         </div>
@@ -33,4 +17,4 @@ const StuStudyMaterial = () => {
   );
 };
 
-export default StuStudyMaterial;
+export default GetAllStudyMaterialStudent;
