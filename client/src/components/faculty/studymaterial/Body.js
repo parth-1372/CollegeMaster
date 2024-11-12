@@ -4,28 +4,27 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 
-import { createTest } from "../../../redux/actions/facultyActions";
-import { ADD_TEST, SET_ERRORS } from "../../../redux/actionTypes";
+import { addStudyMaterial } from "../../../redux/actions/facultyActions";
+import { ADD_STUDYMATERIAL, SET_ERRORS } from "../../../redux/actionTypes";
 
 
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Spinner from "../../../utils/Spinner";
-
 import * as classes from "../../../utils/styles";
+
 const Body = () => {
   const dispatch = useDispatch();
   const store = useSelector((state) => state);
   const user = JSON.parse(localStorage.getItem("user"));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
+  const [file, setFile] = useState(null);
   const [value, setValue] = useState({
     subjectCode: "",
     section: "",
     year: "",
-    test: "",
-    totalMarks: "",
-    date: "",
+    title: "",
     department: user.result.department,
   });
 
@@ -36,76 +35,79 @@ const Body = () => {
         subjectCode: "",
         section: "",
         year: "",
-        test: "",
-        totalMarks: "",
-        date: "",
+        title: "",
         department: user.result.department,
       });
     }
   }, [store.errors]);
 
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setError({});
     setLoading(true);
-    dispatch(createTest(value));
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("subjectCode", value.subjectCode);
+    formData.append("section", value.section);
+    formData.append("year", value.year);
+    formData.append("title", value.title);
+    formData.append("department", user.result.department);
+
+    dispatch(addStudyMaterial(formData));
   };
 
   useEffect(() => {
-    if (store.errors || store.faculty.testAdded) {
+    if (store.errors || store.faculty.materialAdded) {
       setLoading(false);
-      if (store.faculty.testAdded) {
+      if (store.faculty.materialAdded) {
         setValue({
           subjectCode: "",
           section: "",
           year: "",
-          test: "",
-          totalMarks: "",
-          date: "",
+          title: "",
           department: user.result.department,
         });
-
+        setFile(null);
         dispatch({ type: SET_ERRORS, payload: {} });
-        dispatch({ type: ADD_TEST, payload: false });
+        dispatch({ type: ADD_STUDYMATERIAL, payload: false });
       }
     } else {
       setLoading(true);
     }
-  }, [store.errors, store.faculty.testAdded]);
-
-  useEffect(() => {
-    dispatch({ type: SET_ERRORS, payload: {} });
-  }, []);
+  }, [store.errors, store.faculty.materialAdded]);
 
   return (
     <div className="flex-[0.8] mt-3">
       <div className="space-y-5">
         <div className="flex text-gray-400 items-center space-x-2">
           <AddIcon />
-          <h1>Create Test</h1>
+          <h1>Add Study Material</h1>
         </div>
-        <div className=" mr-10 bg-white flex flex-col rounded-xl ">
+        <div className="mr-10 bg-white flex flex-col rounded-xl">
           <form className={classes.adminForm0} onSubmit={handleSubmit}>
             <div className={classes.adminForm1}>
               <div className={classes.adminForm2l}>
                 <div className={classes.adminForm3}>
-                  <h1 className={classes.adminLabel}>Test Name :</h1>
-
+                  <h1 className={classes.adminLabel}>Title :</h1>
                   <input
-                    placeholder="Test Name"
+                    placeholder="Material Title"
                     required
                     className={classes.adminInput}
                     type="text"
-                    value={value.test}
+                    value={value.title}
                     onChange={(e) =>
-                      setValue({ ...value, test: e.target.value })
+                      setValue({ ...value, title: e.target.value })
                     }
                   />
                 </div>
 
                 <div className={classes.adminForm3}>
                   <h1 className={classes.adminLabel}>Subject Code :</h1>
-
                   <input
                     required
                     placeholder="Subject Code"
@@ -120,7 +122,6 @@ const Body = () => {
 
                 <div className={classes.adminForm3}>
                   <h1 className={classes.adminLabel}>Department :</h1>
-
                   <input
                     required
                     placeholder={user.result.department}
@@ -130,6 +131,7 @@ const Body = () => {
                     value={user.result.department}
                   />
                 </div>
+
                 <div className={classes.adminForm3}>
                   <h1 className={classes.adminLabel}>Year :</h1>
                   <Select
@@ -140,7 +142,8 @@ const Body = () => {
                     value={value.year}
                     onChange={(e) =>
                       setValue({ ...value, year: e.target.value })
-                    }>
+                    }
+                  >
                     <MenuItem value="">None</MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
@@ -149,34 +152,8 @@ const Body = () => {
                   </Select>
                 </div>
               </div>
+
               <div className={classes.adminForm2r}>
-                <div className={classes.adminForm3}>
-                  <h1 className={classes.adminLabel}>Total Marks :</h1>
-
-                  <input
-                    required
-                    placeholder="Total Marks"
-                    className={classes.adminInput}
-                    type="number"
-                    value={value.totalMarks}
-                    onChange={(e) =>
-                      setValue({ ...value, totalMarks: e.target.value })
-                    }
-                  />
-                </div>
-                <div className={classes.adminForm3}>
-                  <h1 className={classes.adminLabel}>Date :</h1>
-
-                  <input
-                    required
-                    className={classes.adminInput}
-                    type="date"
-                    value={value.date}
-                    onChange={(e) =>
-                      setValue({ ...value, date: e.target.value })
-                    }
-                  />
-                </div>
                 <div className={classes.adminForm3}>
                   <h1 className={classes.adminLabel}>Section :</h1>
                   <Select
@@ -187,15 +164,28 @@ const Body = () => {
                     value={value.section}
                     onChange={(e) =>
                       setValue({ ...value, section: e.target.value })
-                    }>
+                    }
+                  >
                     <MenuItem value="">None</MenuItem>
                     <MenuItem value="1">1</MenuItem>
                     <MenuItem value="2">2</MenuItem>
                     <MenuItem value="3">3</MenuItem>
                   </Select>
                 </div>
+
+                <div className={classes.adminForm3}>
+                  <h1 className={classes.adminLabel}>File Upload :</h1>
+                  <input
+                    required
+                    className={classes.adminInput}
+                    type="file"
+                    accept=".pdf"
+                    onChange={handleFileChange}
+                  />
+                </div>
               </div>
             </div>
+
             <div className={`${classes.adminFormButton} flex justify-center space-x-4`}>
               <button className={classes.adminFormSubmitButton} type="submit">
                 Submit
@@ -206,31 +196,32 @@ const Body = () => {
                     subjectCode: "",
                     section: "",
                     year: "",
-                    test: "",
-                    totalMarks: "",
-                    date: "",
+                    title: "",
                     department: "",
                   });
+                  setFile(null);
                   setError({});
                 }}
                 className={classes.adminFormClearButton}
-                type="button">
+                type="button"
+              >
                 Clear
               </button>
             </div>
+
             <div className={classes.loadingAndError}>
               {loading && (
                 <Spinner
-                  message="Creating Test"
+                  message="Adding Study Material"
                   height={30}
                   width={150}
                   color="#111111"
                   messageColor="blue"
                 />
               )}
-              {(error.testError || error.backendError) && (
+              {(error.materialError || error.backendError) && (
                 <p className="text-red-500">
-                  {error.testError || error.backendError}
+                  {error.materialError || error.backendError}
                 </p>
               )}
             </div>

@@ -7,7 +7,6 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import reducers from "./redux/reducers";
 import thunk from "redux-thunk";
-import { ToastContainer } from "react-toastify";
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
@@ -15,8 +14,6 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        {/* <ToastContainer><App /></ToastContainer> */}
-        <ToastContainer/>
         <App/>
       </Router>
     </Provider>
