@@ -15,7 +15,7 @@ router.post("/updatepassword", auth, updatedPassword);
 router.post("/updateprofile", auth, updateStudent);
 router.post("/testresult", auth, testResult);
 router.post("/attendance", auth, attendance);
-router.get("/getstudymaterial", auth, getStudyMaterial);
+router.get("/getstudymaterial", auth,  getStudyMaterial);
 
 
 export default router;
