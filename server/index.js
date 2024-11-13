@@ -12,7 +12,6 @@ const app = express();
 dotenv.config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-const cors = require('cors');
 
 app.use(cors({
     origin: 'https://universitymanagementsystem.vercel.app', // Allow Vercel frontend
