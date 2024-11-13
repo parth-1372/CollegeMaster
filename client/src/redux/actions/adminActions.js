@@ -103,7 +103,9 @@ export const updateAdmin = (formData) => async (dispatch) => {
 
 export const addAdmin = (formData) => async (dispatch) => {
   try {
+    console.log(formData);
     const { data } = await api.addAdmin(formData);
+    console.log(data);
     alert("Admin Added Successfully");
     dispatch({ type: ADD_ADMIN, payload: data }); 
     return data; 

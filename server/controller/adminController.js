@@ -106,38 +106,54 @@ export const updateAdmin = async (req, res) => {
 
 export const addAdmin = async (req, res) => {
   try {
+    console.log("Received request to add a new admin");
+
     const { name, dob, department, contactNumber, avatar, email, joiningYear } = req.body;
+    console.log("Request Body:", req.body);
+
     const errors = {};
-    conole.log(avatar);
+    
     // Check for existing admin with the same email
+    console.log("Checking for existing admin with email:", email);
     const existingAdmin = await Admin.findOne({ email });
     if (existingAdmin) {
+      console.log("Error: Admin with this email already exists");
       errors.emailError = "Email already exists";
       return res.status(400).json(errors);
     }
-    
+
     // Fetch department and create username helper based on department code
+    console.log("Fetching department details for:", department);
     const existingDepartment = await Department.findOne({ department });
     if (!existingDepartment) {
+      console.log("Error: Department not found");
       errors.departmentError = "Department not found";
       return res.status(400).json(errors);
     }
 
     const departmentHelper = existingDepartment.departmentCode;
+    console.log("Department Helper (department code):", departmentHelper);
+
     const admins = await Admin.find({ department });
+    console.log("Number of existing admins in department:", admins.length);
 
     // Generate helper string based on admins count
     let helper = admins.length.toString().padStart(3, "0");
+    console.log("Helper string for username:", helper);
+
     const date = new Date();
     const components = ["ADM", date.getFullYear(), departmentHelper, helper];
     const username = components.join("");
+    console.log("Generated Username:", username);
 
     // Format and hash password
     const newDob = dob.split("-").reverse().join("-");
-    console.log("DOB: "+dob+" Password: "+newDob);
+    console.log("Formatted DOB (used as password):", newDob);
     const hashedPassword = await bcrypt.hash(newDob, 10);
+    console.log("Hashed Password:", hashedPassword);
 
     // Create and save the new admin
+    console.log("Creating new admin object with provided details");
     const newAdmin = new Admin({
       name,
       email,
@@ -152,7 +168,8 @@ export const addAdmin = async (req, res) => {
     });
 
     await newAdmin.save();
-    console.log(newAdmin);
+    console.log("New admin saved successfully:", newAdmin);
+
     // Send success response
     return res.status(200).json({
       success: true,
@@ -161,11 +178,12 @@ export const addAdmin = async (req, res) => {
     });
 
   } catch (error) {
-    // Send detailed error message
+    console.log("Error occurred in addAdmin:", error.message);
     const errors = { backendError: error.message || "An error occurred" };
     return res.status(500).json(errors);
   }
 };
+
 export const addDummyAdmin = async () => {
   const email = "dummy@gmail.com";
   const password = "123";

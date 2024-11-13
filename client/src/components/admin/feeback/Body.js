@@ -78,25 +78,86 @@ const Body = () => {
             {error && <p className="text-red-500 text-lg md:text-2xl font-bold">{error}</p>}
 
             {!loading && feedbacks?.result?.length > 0 && (
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    {feedbacks.result.map((feedback) => (
-      <Card key={feedback._id} sx={{ width: "100%", minHeight: '150px', display: "flex", flexDirection: "column" }}>
-        <CardContent>
-          <Typography variant="h6" gutterBottom>Subject Code: {feedback.subjectCode}</Typography>
-          <Typography variant="body2" color="text.secondary">Department: {feedback.department}</Typography>
-          <Typography variant="body2" color="text.secondary">Year: {feedback.year}, Section: {feedback.section}</Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>Feedback: {feedback.feedback}</Typography>
-          <div className="mt-2 space-y-1">
-            {["Clarity", "Knowledge", "Presentation", "Helpfulness", "Engagement"].map((aspect) => (
-              <Typography key={aspect}>{aspect} Rating: {feedback[`${aspect.toLowerCase()}Rating`]}</Typography>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    ))}
-  </div>
-)}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {feedbacks.result.map((feedback) => (
+                  <Card 
+                    key={feedback._id} 
+                    sx={{ 
+                      width: "100%", 
+                      minHeight: '150px', 
+                      display: "flex", 
+                      flexDirection: "column",
+                      backgroundColor: '#212223', 
+                      borderRadius:'30px',
+                      color: 'white',
+                      transition: 'transform 0.2s, box-shadow 0.2s',
+                      '&:hover': {
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+                      }
+                    }}
+                  >
+                    <CardContent sx={{ height: '100%' }}>
+                      <Typography 
+                        variant="h6" 
+                        sx={{ 
+                          color: '#fff',
+                          borderBottom: '2px solid #374151',
+                          paddingBottom: '8px',
+                          marginBottom: '12px'
+                        }}
+                      >
+                        Subject Code: {feedback.subjectCode}
+                      </Typography>
+                      
+                      <div className="space-y-2">
+                        <Typography sx={{ color: '#d1d5db' }}>
+                          Department: {feedback.department}
+                        </Typography>
+                        <Typography sx={{ color: '#d1d5db' }}>
+                          Year: {feedback.year} • Section: {feedback.section}
+                        </Typography>
+                      </div>
 
+                      <Typography 
+                        sx={{ 
+                          color: '#9ca3af',
+                          margin: '16px 0',
+                          padding: '8px',
+                          backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                          borderRadius: '4px'
+                        }}
+                      >
+                        "{feedback.feedback}"
+                      </Typography>
+
+                      <div className="mt-4 space-y-2">
+                        {["Clarity", "Knowledge", "Presentation", "Helpfulness", "Engagement"].map((aspect) => (
+                          <div 
+                            key={aspect}
+                            className="flex justify-between items-center"
+                          >
+                            <Typography sx={{ color: '#9ca3af' }}>{aspect}:</Typography>
+                            <Typography 
+                              sx={{ 
+                                color: '#fff',
+                                backgroundColor: '#374151',
+                                padding: '2px 8px',
+                                borderRadius: '4px',
+                                minWidth: '32px',
+                                textAlign: 'center'
+                              }}
+                            >
+                              {feedback[`${aspect.toLowerCase()}Rating`]}
+                            </Typography>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>

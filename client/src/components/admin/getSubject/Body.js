@@ -112,36 +112,42 @@ const Body = () => {
             </div>
 
             {search && !loading && Object.keys(error).length === 0 && subjects?.length !== 0 && (
-              <div className="space-y-4 max-h-96 overflow-y-auto">
-                {isMobile ? (
-                  subjects.map((sub, idx) => (
-                    <div key={idx} className="p-4 bg-white shadow-lg rounded-lg">
-                      <h1 className="font-bold text-lg">Sr No: {idx + 1}</h1>
-                      <p><strong>Subject Code:</strong> {sub.subjectCode}</p>
-                      <p><strong>Subject Name:</strong> {sub.subjectName}</p>
-                      <p><strong>Total Lectures:</strong> {sub.totalLectures}</p>
-                    </div>
-                  ))
-                ) : (
-                  <>
-                    <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-7 gap-x-2">
-                      <h1 className={`${classes.adminDataHeading} col-span-1`}>Sr no.</h1>
-                      <h1 className={`${classes.adminDataHeading} col-span-2`}>Subject Code</h1>
-                      <h1 className={`${classes.adminDataHeading} col-span-3`}>Subject Name</h1>
-                      <h1 className={`${classes.adminDataHeading} col-span-1`}>Total Lectures</h1>
-                    </div>
-                    {subjects.map((sub, idx) => (
-                      <div key={idx} className={`${classes.adminDataBody} grid grid-cols-4 sm:grid-cols-6 md:grid-cols-7 gap-x-2`}>
-                        <h1 className={`col-span-1 ${classes.adminDataBodyFields}`}>{idx + 1}</h1>
-                        <h1 className={`col-span-2 truncate ${classes.adminDataBodyFields}`}>{sub.subjectCode}</h1>
-                        <h1 className={`col-span-3 truncate ${classes.adminDataBodyFields}`}>{sub.subjectName}</h1>
-                        <h1 className={`col-span-1 truncate ${classes.adminDataBodyFields}`}>{sub.totalLectures}</h1>
-                      </div>
-                    ))}
-                  </>
-                )}
-              </div>
-            )}
+  <div className="space-y-4 max-h-96 overflow-y-auto">
+    {isMobile ? (
+      // Mobile view: Card layout
+      subjects.map((sub, idx) => (
+        <div key={idx} className="p-4 bg-white shadow-lg rounded-lg">
+          <h1 className="font-bold text-lg">Sr No: {idx + 1}</h1>
+          <p><strong>Subject Code:</strong> {sub.subjectCode}</p>
+          <p><strong>Subject Name:</strong> {sub.subjectName}</p>
+          <p><strong>Total Lectures:</strong> {sub.totalLectures}</p>
+        </div>
+      ))
+    ) : (
+      // Desktop view: Grid layout with headers
+      <>
+        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-7 gap-x-2 p-2 bg-gray-200 rounded-lg">
+          <h1 className={`${classes.adminDataHeading} col-span-1`}>Sr No.</h1>
+          <h1 className={`${classes.adminDataHeading} col-span-2`}>Subject Code</h1>
+          <h1 className={`${classes.adminDataHeading} col-span-3`}>Subject Name</h1>
+          <h1 className={`${classes.adminDataHeading} col-span-1`}>Total Lectures</h1>
+        </div>
+        {subjects.map((sub, idx) => (
+          <div
+            key={idx}
+            className={`${classes.adminDataBody} grid grid-cols-4 sm:grid-cols-6 md:grid-cols-7 gap-x-2 p-2 bg-white shadow-lg rounded-lg`}
+          >
+            <h1 className={`col-span-1 ${classes.adminDataBodyFields}`}>{idx + 1}</h1>
+            <h1 className={`col-span-2 truncate ${classes.adminDataBodyFields}`}>{sub.subjectCode}</h1>
+            <h1 className={`col-span-3 truncate ${classes.adminDataBodyFields}`}>{sub.subjectName}</h1>
+            <h1 className={`col-span-1 truncate ${classes.adminDataBodyFields}`}>{sub.totalLectures}</h1>
+          </div>
+        ))}
+      </>
+    )}
+  </div>
+)}
+
           </div>
         </div>
       </div>

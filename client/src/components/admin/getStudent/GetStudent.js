@@ -15,7 +15,7 @@ const GetStudent = () => {
     <div className="bg-[#d6d9e0] h-screen flex items-center justify-center">
       <div className={classes.rootPage}>
         <Header />
-        <div className="flex flex-[0.95]">
+        <div className={classes.barAndBody}>
           <Sidebar />
           <Body />
         </div>
