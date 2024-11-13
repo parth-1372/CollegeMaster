@@ -53,19 +53,7 @@ export const adminInput = " text-black border-2 px-3 py-2 text-sm w-full text-bl
 
 export const loadingAndError = "flex justify-center mt-6";
 
-// added later
-// export const rootPage = "flex flex-col bg-[#f4f6fa] h-[99%] md:h-5/6 w-[95%] rounded-2xl shadow-2xl space-y-6 overflow-hidden";
 
-// export const barAndBody = "flex flex-[0.95] overflow-y-auto overlfow-x-auto";
-
-
-// export const deletePar = "mr-0 md:mr-20 bg-white flex flex-col rounded-xl p-4 md:flex-row overflow-hidden shadow-md";
-
-// export const deleteChild ="flex flex-col space-y-2 col-span-1 items-center md:items-start";
-
-
-
-// added later
 export const rootPage = "flex flex-col bg-black h-[99%]  w-[99%] md:h-[99%] w-[99%] rounded-2xl shadow-2xl space-y-6 overflow-hidden";
 
 export const barAndBody = "flex flex-[0.95]  overflow-y-auto overlfow-x-auto";

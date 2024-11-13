@@ -12,7 +12,14 @@ const app = express();
 dotenv.config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cors());
+const cors = require('cors');
+
+app.use(cors({
+    origin: 'https://universitymanagementsystem.vercel.app', // Allow Vercel frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
+    credentials: true // Allow cookies to be sent if needed
+}));
+
 
 app.use("/api/admin", adminRoutes);
 app.use("/api/faculty", facultyRoutes);
